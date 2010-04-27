@@ -1,7 +1,7 @@
 Protester
 =============
 
-This is a [Monk](http://monkrb.com) skeleton that uses [Redis](http://code.google.com/p/redis) as the database, [HAML/SASS](http://haml-lang.com/) for the views and [Protest](http://github.com/matflores/protest) for tests.
+This is a [Monk](http://monkrb.com) skeleton that uses [Redis](http://code.google.com/p/redis) as the database, [HAML/SASS](http://haml-lang.com/) for the views and [Protest](http://matflores.github.com/protest/) for tests.
 
 Getting Started
 ---------------
@@ -30,7 +30,7 @@ Redis is connected to `#{@redis[:host]}:#{@redis[:port]}`. If you want to change
 Testing
 -------
 
-Protester uses [Protest](http://github.com/matflores/protest) as its testing framework.
+Protester uses [Protest](http://matflores.github.com/protest/) as its testing framework.
 
 There's a user story written for you at `test/stories/site_test.rb`. Start adding whatever you want to test and then run `monk test` or `monk stories`. For convenience, you can also run `rake`, which just invokes `monk test`.
 
