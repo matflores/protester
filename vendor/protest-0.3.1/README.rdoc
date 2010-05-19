@@ -2,16 +2,16 @@
 
     require "protest"
 
-    Protest.context("A user") do
+    Protest.describe("A user") do
       setup do
         @user = User.new(:name => "John Doe", :email => "john@example.org")
       end
 
-      test "has a name" do
+      it "has a name" do
         assert_equal "John Doe", @user.name
       end
 
-      test "has an email" do
+      it "has an email" do
         assert_equal "john@example.org", @user.email
       end
     end
@@ -49,7 +49,7 @@ If you need to run code before or after each test, declare a +setup+ or
 
 +setup+ and +teardown+ blocks are evaluated in the same context as your test,
 which means any instance variables defined in any of them are available in the
-rest.
+rest. Both methods are aliased for your comfort as before and after respectively.
 
 You can also use +global_setup+ and +global_teardown+ to run code only once per
 test case. +global_setup+ blocks will run once before the first test is run, and
@@ -69,13 +69,13 @@ them.
 
 Break down your test into logical chunks with nested contexts:
 
-    Protest.context("A user") do
+    Protest.describe("A user") do
       setup do
         @user = User.make
       end
 
       context "when validating" do
-        test "validates name" do
+        it "validates name" do
           @user.name = nil
           assert !@user.valid?
         end
@@ -84,7 +84,7 @@ Break down your test into logical chunks with nested contexts:
       end
 
       context "doing something else" do
-        # your get the idea
+        # you get the idea
       end
     end
 
@@ -187,6 +187,34 @@ Will output, when run with the <tt>:documentation</tt> report:
 
 This is similar to the specdoc runner in rspec[http://rspec.info].
 
+=== Summary report
+
+Use this report by calling <tt>Protest.report_with(:summary)</tt>
+
+Will output a brief summary with the total number of tests, assertions, passed
+tests, pending tests, failed tests and errors.
+
+=== Stories report
+
+Use this report by calling <tt>Protest.report_with(:stories)</tt>
+
+This report is based on Citrusbyte's Stories[http://github.com/citrusbyte/stories],
+by Damian Janowski and Michel Martens.
+
+=== Turn report
+
+Use this report by calling <tt>Protest.report_with(:turn)</tt>
+
+This report displays each test on a separate line with failures being displayed
+immediately instead of at the end of the tests.
+
+You might find this useful when running a large test suite, as it can be very
+frustrating to see a failure (....F...) and then have to wait until all the
+tests finish before you can see what the exact failure was.
+
+This report is based on the output displayed by TURN[http://github.com/TwP/turn],
+Test::Unit Reporter (New) by Tim Pease.
+
 === Defining your own reports
 
 This is really, really easy. All you need to do is subclass Report, and
@@ -196,5 +224,6 @@ Protest::Reports::Progress and Protest::Reports::Documentation.
 
 == Legal
 
+Maintainer:: Matías Flores — http://matflores.com
 Author:: Nicolás Sanguinetti — http://nicolassanguinetti.info
 License:: MIT (see bundled LICENSE file for more info)
