@@ -53,6 +53,11 @@ class Monk < Thor
     end
   end
 
+  desc "console", "Launch Monk console"
+  def console()
+    system "irb -r init"
+  end
+
 private
 
   def self.source_root
