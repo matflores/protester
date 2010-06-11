@@ -1,13 +1,27 @@
+# encoding: utf-8
+
 require "test_helper"
 
-require "webrat"
 require "rack/test"
+require "capybara"
+require "capybara/dsl"
+require "protest/stories"
 
-Webrat.configure do |config|
-  config.mode = :rack
-end
+Capybara.default_driver = :selenium
+Capybara.app = Main.new
 
 class Protest::TestCase
-  include Webrat::Methods
-  include Webrat::Matchers
+  include Capybara
+
+  def assert_contain text
+    assert page.has_content?(text)
+  end
+
+  def status
+    Capybara.current_session.driver.rack_server.response.status
+  end
+
+  def url path
+    Capybara.current_session.driver.rack_server.url path
+  end
 end
