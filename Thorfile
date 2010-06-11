@@ -1,13 +1,13 @@
 class Monk < Thor
   include Thor::Actions
 
-  desc "test", "Run all tests"
-  def test
+  desc "test [dir]", "Run all tests in the specified directory"
+  def test(dir = "**")
     verify_config(:test)
 
     $:.unshift File.join(File.dirname(__FILE__), "test")
 
-    Dir['test/**/*_test.rb'].each do |file|
+    Dir["test/#{dir}/*_test.rb"].each do |file|
       load file unless file =~ /^-/
     end
   end
