@@ -1,5 +1,5 @@
 Protester
-=============
+=========
 
 This is a [Monk](http://monkrb.com) skeleton that uses [Redis](http://code.google.com/p/redis) as the database, [HAML/SASS](http://haml-lang.com/) for the views and [Protest](http://matflores.github.com/protest/) for tests.
 
