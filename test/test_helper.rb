@@ -36,7 +36,7 @@ class Protest::TestCase
   end
 
   def app
-    Main.new
+    Main
   end
 end
 

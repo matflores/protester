@@ -8,7 +8,7 @@ require "capybara/dsl"
 require "protest/stories"
 
 Capybara.default_driver = :selenium
-Capybara.app = Main.new
+Capybara.app = Main
 
 class Protest::TestCase
   include Capybara
