@@ -23,4 +23,18 @@ class Protest::TestCase
   def url(path)
     Capybara.current_session.driver.rack_server.url path
   end
+
+  class << self
+    alias original_scenario scenario
+
+    def scenario(name, options = {}, &block)
+      original_scenario(name) do
+        old_driver, Capybara.current_driver = Capybara.current_driver, options[:driver] || Capybara.current_driver
+
+        instance_eval(&block)
+
+        Capybara.current_driver = old_driver
+      end
+    end
+  end
 end
