@@ -3,7 +3,6 @@
 require "test_helper"
 
 require "rack/test"
-require "capybara"
 require "capybara/dsl"
 require "protest/stories"
 
