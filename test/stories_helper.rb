@@ -35,9 +35,14 @@ class Protest::TestCase
       original_scenario(name) do
         old_driver, Capybara.current_driver = Capybara.current_driver, options[:driver] || Capybara.current_driver
 
-        instance_eval(&block)
+        # TODO: check Capybara's code for an alternative way of explicitely assigning the driver
+        Capybara.current_session.driver # Do not remove this!
 
-        Capybara.current_driver = old_driver
+        begin
+          instance_eval(&block)
+        ensure
+          Capybara.current_driver = old_driver
+        end
       end
     end
   end
