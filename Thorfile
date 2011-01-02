@@ -58,6 +58,11 @@ class Monk < Thor
     system "irb -r ./init"
   end
 
+  desc "notes", "List TODO notes"
+  def notes
+    system 'grep -r "# TODO" app'
+  end
+
 private
 
   def self.source_root
