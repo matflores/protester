@@ -20,8 +20,8 @@ class Protest::TestCase
     assert page.has_content?(text)
   end
 
-  def status
-    Capybara.current_session.driver.rack_server.response.status
+  def status_code
+    Capybara.current_session.driver.status_code
   end
 
   def url(path)
