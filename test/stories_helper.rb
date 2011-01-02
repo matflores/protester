@@ -12,6 +12,10 @@ Capybara.app = Main
 class Protest::TestCase
   include Capybara
 
+  def setup
+    Capybara.reset_sessions!
+  end
+
   def assert_contain(text)
     assert page.has_content?(text)
   end
